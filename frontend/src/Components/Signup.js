@@ -31,14 +31,10 @@ const Signup = () => {
     }
 
   
-    let passwordValidationError = validatePassword(pass);
+    let passwordValidationError = validatePassword(pass,passagain);
     if (passwordValidationError) {
       setPasswordError(passwordValidationError);
-      if (pass !== passagain) {
-        setPasswordError("");
-        setConfirmPasswordError("Passwords do not match.");
-        return;
-      }
+     
       return;
     }
 
