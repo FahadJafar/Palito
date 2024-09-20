@@ -34,11 +34,15 @@ const Signup = () => {
     let passwordValidationError = validatePassword(pass,passagain);
     if (passwordValidationError) {
       setPasswordError(passwordValidationError);
+<<<<<<< HEAD
       // if (pass !== passagain) {
       //   setPasswordError("");
       //   setConfirmPasswordError("Passwords do not match.");
       //   return;
       // }
+=======
+     
+>>>>>>> origin/main
       return;
     }
 
