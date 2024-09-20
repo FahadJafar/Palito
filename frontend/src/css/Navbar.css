@@ -1,0 +1,426 @@
+@import url("https://fonts.googleapis.com/css2?family=Lexend:wght@400;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&display=swap");
+
+.Navbar {
+  top: 0;
+  left: 0;
+  width: 222px;
+  height: 100vh;
+  max-width: 225px;
+  background: rgba(241, 247, 250, 1);
+  border-right: 2px solid rgb(241, 10, 10);
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  z-index: 1;
+  padding: 5px 5px 5px px;
+}
+.Navbar nav h1 {
+  font-family: "Lexend", sans-serif;
+  font-size: 1.875rem;
+  color: #09bc8a;
+  font-weight: 800;
+  margin-top: 10px;
+  line-height: 37.5px;
+  text-align: left;
+  margin-bottom: 32px;
+  margin-left: 26px;
+}
+
+.Navbar nav {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+  
+  /* border-right: 1px solid rgba(199, 225, 235, 1); */
+}
+
+.Navbar a {
+  font-family: "Manrope", sans-serif;
+  color: rgb(0, 0, 0);
+  text-decoration: none;
+  padding: 25px 25px;
+
+  margin-left: 10px;
+  transition: background-color 0.3s ease;
+  width: 100%;
+  height: 40px;
+  top: 134px;
+  /* background-color: red; */
+  left: 10px;
+  border-radius: 10px 0px 0px 0px;
+  opacity: 0px;
+  font-size: 13px;
+  font-weight: 300;
+  line-height: 19.12px;
+  text-align: left;
+}
+
+.Navbar .Logout {
+  margin-top: auto;
+  margin-left: 1px;
+  padding: 2px 5px;
+  border-top: 1px solid rgba(199, 225, 235, 1);
+  background-color: rgba(241, 247, 250, 1);
+  width: 100%;
+  box-sizing: border-box;
+}
+.Navbar .Logout h2 {
+  font-family: Manrope;
+  font-size: 16px;
+  font-weight: 600;
+  text-align: left;
+  color: rgba(19, 30, 51, 1);
+}
+.Navbar .Logout p {
+  font-family: Manrope;
+  font-size: 14px;
+  font-weight: 500;
+  text-align: left;
+
+  color: rgba(19, 30, 51, 1);
+}
+
+.Navbar .Logout .btn button {
+  padding: 8px 15px;
+  font-size: 1rem;
+  background-color: #09bc8a;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  width: 100%;
+}
+
+.Navbar .Logout .btn button:hover {
+  background-color: #06a678;
+}
+
+span {
+  color: black;
+}
+.custom-textfield .MuiOutlinedInput-root {
+  border-radius: 10px;
+  font-size: 14px;
+  background: rgba(227, 240, 245, 1);
+  width: 174px;
+  margin-left: 8px;
+  height: 40px;
+}
+
+.custom-textfield .MuiInputLabel-root {
+  font-size: 14px;
+}
+
+.Navbar .Logout .accordion-button {
+  width: 100%;
+  text-align: left;
+  background-color: transparent !important;
+  padding: 10px;
+  outline: none;
+  outline: none;
+  box-shadow: none;
+}
+.Navbar .Logout .accordion-button:not(.collapsed) {
+  background-color: transparent !important;
+  border: none;
+}
+
+.Navbar .Logout .accordion-body {
+  padding: 10px;
+  outline: none;
+  overflow: hidden;
+}
+.Navbar .Logout .accordion-header {
+  padding: 10px;
+  background-color: rgba(241, 247, 250, 1);
+  overflow: hidden;
+  outline: none;
+  outline: none;
+  box-shadow: none;
+}
+.Navbar .Logout .accordion-button:focus {
+  background-color: rgba(241, 247, 250, 1);
+  outline: none;
+  box-shadow: none;
+}
+.Navbar .Logout .accordion-header:focus {
+  background-color: rgba(241, 247, 250, 1);
+  outline: none;
+  box-shadow: none;
+}
+
+.Navbar .Profile {
+  display: flex;
+}
+.Navbar .Profile h2 {
+  margin-top: 7px;
+  padding: 6px;
+}
+
+.Bar {
+  margin-top: 15px;
+}
+.Navbar .Bar {
+  margin-left: px;
+}
+.Navbar .Bar img {
+  margin-right: 10px;
+  height: 16px;
+  width: 16px;
+}
+
+.Navbar .Bar .accordion-header {
+  padding: px;
+  margin-right: 0px;
+  outline: none;
+  box-shadow: none;
+  background-color: transparent;
+  overflow: hidden;
+}
+.Navbar .Bar .accordion-header:focus {
+  background-color: transparent;
+  color: #000;
+  outline: none;
+  box-shadow: none;
+  outline: none;
+}
+
+.Navbar .Bar .accordion-body {
+  background-color: rgba(241, 247, 250, 1);
+  outline: none;
+  box-shadow: none;
+}
+.Navbar .Bar .accordion-button:not(.collapsed) {
+  background-color: transparent;
+  outline: none;
+  box-shadow: none;
+}
+.Navbar .Bar .accordion-button:focus {
+  box-shadow: none;
+  background-color: transparent;
+  outline: none;
+  box-shadow: none;
+}
+.Navbar .Bar .accordion-button {
+  width: 100%;
+  text-align: left;
+  margin-left: 0px;
+  outline: none;
+  box-shadow: none;
+  background-color: rgba(241, 247, 250, 1) !important;
+}
+.Navbar .Bar .accordion-header {
+  background-color: rgba(241, 247, 250, 1);
+  overflow: hidden;
+  outline: none;
+  box-shadow: none;
+  padding: 5px;
+}
+.Navbar .Bar .accordion-item {
+  outline: none;
+  box-shadow: none;
+}
+.Folder {
+
+  padding-top: 5px;
+  margin-left: 24px;
+}
+.Folder button {
+  border: 1px solid transparent;
+  background-color: rgba(241, 247, 250, 1);
+  margin-left: 0px;
+}
+.Folder img {
+
+  margin-right: 0px;
+}
+
+.accordion-item {
+  outline: none;
+  box-shadow: none;
+}
+.Navbar .accordion-button,
+.Navbar .accordion-header,
+.Navbar .accordion-body,
+.Navbar .accordion-item {
+  border: none !important;
+  box-shadow: none !important;
+  outline: none !important;
+}
+
+.accordion-button {
+  width: 100%;
+  text-align: left;
+  background-color: rgba(241, 247, 250, 1) !important;
+
+  padding: 10px;
+}
+
+.accordion-header {
+  background-color: rgba(241, 247, 250, 1) !important;
+  
+  padding: 10px;
+}
+
+.accordion-body {
+  background-color: rgba(241, 247, 250, 1) !important;
+}
+
+.accordion-button:not(.collapsed) {
+  background-color: rgba(241, 247, 250, 1) !important;
+}
+
+.accordion-button:focus,
+.accordion-header:focus {
+  background-color: rgba(241, 247, 250, 1) !important;
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+.Navbar.collapsed .Folder button {
+  display: none; 
+}
+.Menu-icon
+{
+
+  text-align: right;
+  align-items: right;
+  margin-top: 12px;
+  cursor:pointer;
+  margin-left: 31px;
+
+}
+.Navbar {
+  top: 0;
+  left: 0;
+  width: 210px;
+  height: 100vh;
+  max-width: 250px;
+  background: rgba(241, 247, 250, 1);
+  border-right: 1px solid rgba(199, 225, 235, 1);
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  z-index: 1;
+  padding: 5px;
+  transition: width 0.3s ease;
+}
+
+.Navbar.collapsed {
+  width: 80px;
+  max-width: 90px;
+}
+
+.Navbar nav h1 {
+  font-family: "Lexend", sans-serif;
+  font-size: 1.875rem;
+  color: #09bc8a;
+  font-weight: 800;
+  margin-top: 10px;
+  line-height: 37.5px;
+  text-align: left;
+  margin-bottom: 32px;
+  margin-left: 26px;
+  transition: margin-left 0.3s ease;
+}
+
+.Navbar.collapsed nav h1 {
+  margin-top:  15px;
+  margin-left: 24px;
+}
+
+.custom-textfield {
+  transition: opacity 0.3s ease;
+}
+
+.Navbar.collapsed .custom-textfield {
+  opacity: 0;
+  width: 0;
+  visibility: hidden;
+}
+
+.Navbar .Bar img {
+  margin-right: 10px;
+  height: 18px;
+  width: 18px;
+}
+
+.Navbar.collapsed .Bar img {
+  height: 18px;
+  width:18px;
+}
+
+.Navbar .Folder button {
+  background-color: transparent;
+  border: none;
+}
+
+.Navbar.collapsed .Folder button {
+  display: none;
+}
+
+.Navbar .Logout {
+  margin-top: auto;
+  padding: 2px 5px;
+}
+
+.Navbar .Profile {
+  display: flex;
+}
+
+.Navbar .Profile h2 {
+  margin-top: 7px;
+  padding: 6px;
+}
+
+.Navbar.collapsed .Profile h2 {
+  display: none;
+}
+
+
+.Adjust{
+  display: flex;
+  margin-top: 18px;
+  
+}
+.pointer{
+  cursor: pointer;
+}
+.collapsed-icon
+{
+  cursor: pointer;
+  margin:25px;
+}
+.collapsed-icon1
+{
+  cursor: pointer;
+}
+.collapsed-search-icon
+{
+  height: 18px;
+  width:18px;
+  margin-left:22px;
+  margin-bottom: 0px;
+  cursor: pointer;
+}
+.Ava
+{ 
+  margin-top: 15px;
+  cursor: pointer;
+  margin-left: 8px;
+}
+.dots
+{
+  position: absolute;
+  cursor: pointer;
+  left:173px;
+  margin-right:35px;
+}
+.collapsed-Ava{
+  height: 18px;
+  width:18px;
+margin:24px;
+  cursor: pointer;
+}

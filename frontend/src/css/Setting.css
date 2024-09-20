@@ -1,0 +1,360 @@
+@import url("https://fonts.googleapis.com/css2?family=Lexend:wght@400;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&display=swap");
+.Setting {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: (241, 247, 250, 1);
+  height: 90vh;
+}
+.Setting .Adjust {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  width: 100%;
+  padding-left: 38px;
+}
+
+.Setting h2 {
+  font-family: Manrope;
+  font-size: 24px;
+  font-weight: 700;
+  text-align:left;
+  margin-left: 170px;
+  margin-top:50px;
+  line-height: 32.78px;
+  margin-bottom: 20px;
+}
+.Setting h1 {
+  font-family: Manrope;
+  font-size: 16px;
+  font-weight: 700;
+  text-align: center;
+  margin:0;
+  cursor: pointer;
+  line-height: 32.78px;
+  margin-bottom: 7px;
+}
+.Setting .IconArrow
+{
+  margin-right: 5px;
+}
+
+.Setting-Container {
+  width: 696px;
+  margin-left: 205px;
+  border: 1px solid rgba(227, 227, 227, 1);
+  box-shadow: 5px 5px 15px 0px rgba(185, 185, 185, 0.25);
+
+  background-color: rgba(255, 255, 255, 1);
+  border-radius: 15px;
+  max-width: 696px;
+  align-items: center;
+  height:540px;
+  max-height: 610px;
+}
+.Setting-Container h4 {
+  font-family: Manrope;
+  font-size: 15px;
+  font-weight: 700;
+  line-height: 20.49px;
+  text-align: left;
+  padding: 15px;
+}
+.Setting-Container .Avatar-img {
+  margin-left: 14px;
+}
+
+.NAME h3 {
+  font-family: Manrope;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 21.86px;
+  text-align: left;
+}
+.NAME p {
+  font-family: Manrope;
+  font-size: 16px;
+  font-weight: 800;
+  line-height: 21.86px;
+  text-align: left;
+}
+.EMAIL {
+  border-top: 1px solid rgba(239, 239, 239, 1);
+  display: flex;
+  align-items: left;
+  justify-content: space-between;
+  width: 100%;
+  padding: 22px;
+  padding-top: 2px;
+  padding-left: 15px;
+}
+.EMAIL h3 {
+  font-family: Manrope;
+  font-size: 16px;
+  margin-top: 16px;
+  font-weight: 600;
+  line-height: 21.86px;
+  text-align: left;
+}
+.EMAIL p {
+  font-family: Manrope;
+  font-size: 16px;
+  font-weight: 800;
+  line-height: 21.86px;
+  text-align: left;
+}
+
+.Pass {
+  border-top: 1px solid rgba(239, 239, 239, 1);
+  display: flex;
+  align-items: left;
+  justify-content: space-between;
+  padding: 31px;
+  padding-top: 2px;
+  padding-left: 15px;
+}
+.Pass h3 {
+  font-family: Manrope;
+  font-size: 16px;
+  margin-top: 12px;
+  font-weight: 800;
+  line-height: 21.86px;
+  text-align: left;
+}
+
+.Setting-Container button {
+  font-family: Manrope;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 21.86px;
+  text-align: left;
+  background-color: rgba(255, 255, 255, 1);
+  border: 1px solid transparent;
+}
+.NAME {
+  display: flex;
+  align-items: left;
+  justify-content: space-between;
+  width: 100%;
+  padding: 22px;
+  padding-left: 15px;
+  padding-bottom: 6px;
+}
+
+.setting-btn {
+  margin-top: 8px;
+  margin-left: auto;
+}
+/* .Cname {
+  display: flex;
+  align-items: flex-end; 
+}
+.Cname h2 {
+  font-family: Manrope;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 21.86px;
+  text-align: left;
+  color: rgba(66, 75, 92, 1);
+}
+.Cname button {
+  padding: 8px 15px;
+  font-size: 1rem;
+  background-color: #09bc8a;
+  color: white;
+  text-align: center;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  width: 50%;
+}
+.Cname input {
+  width: 322px;
+  height: 45px;
+  border-radius: 5px;
+  border: 1px 0px 0px 0px;
+  opacity: 0px;
+  border: 1px solid rgba(227, 227, 227, 1);
+  padding-left:8px;
+font-weight: 600;
+} */
+.Cname {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 100%;
+}
+
+.Cname-labels {
+  display: flex;
+  justify-content: left;
+  align-items: left;
+  text-align: left;
+  width: 100%;
+  gap:265px;
+}
+
+.Cname-labels h2 {
+  font-family: Manrope;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 21.86px;
+  margin:0;
+  text-align: left;
+  color: rgba(66, 75, 92, 1);
+}
+
+.Cname-inputs {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.Cname-inputs input {
+  width: 48%; 
+  height: 45px;
+  border-radius: 5px;
+  border: 1px solid rgba(227, 227, 227, 1);
+  padding-left: 8px;
+  font-weight: 600;
+  color:black;
+}
+.Cname-inputs input::placeholder{
+  color:black;
+}
+
+.Cname-button {
+  text-align: left;
+  margin-top: 10px;
+}
+
+.Cname-button button {
+  padding: 8px 15px;
+  font-size: 1rem;
+  background-color: #09bc8a;
+  color: white;
+  border: none;
+  text-align: center;
+  border-radius: 5px;
+  cursor: pointer;
+  width: 25%;
+}
+
+@media (max-width: 1087px) {
+  .Setting h2 {
+    font-size: 17px;
+  }
+
+  .Setting-Container {
+    padding: 8px;
+    width: 526px;
+  }
+
+  .NAME, .EMAIL, .Pass {
+    font-size: 13px;
+  }
+
+  .Cname-button button {
+    font-size: 0.8rem;
+    padding: 5px 11px;
+  }
+}
+
+@media (max-width: 920px) {
+  .Setting h2 {
+    margin-left: 0;
+    margin-top: 20px;
+    font-size: 20px;
+  }
+
+  .Setting-Container {
+    width: 456px;
+    
+    margin: 10px;
+  }
+
+  .NAME, .EMAIL, .Pass {
+    flex-direction: column;
+    padding: 10px;
+  }
+
+  .Cname-labels {
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .Cname-inputs {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .Cname-inputs input {
+    width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  .Setting h2 {
+    font-size: 18px;
+  }
+
+  .Setting-Container {
+    padding: 10px;
+  }
+
+  .NAME, .EMAIL, .Pass {
+    font-size: 14px;
+  }
+
+  .Cname-button button {
+    font-size: 0.9rem;
+    padding: 6px 12px;
+  }
+}
+
+
+.upload-button {
+  display: none;
+}
+
+
+.Avatar-container {
+  position: relative;
+  display: flex;
+  align-items:left;
+  justify-content:left;
+}
+
+
+.image-icon {
+  position: absolute;
+  bottom: 47px;
+  right: 594px;
+  background-color: rgba(0, 0, 0, 0.5);
+  border-radius: 50%;
+  padding: 8px;
+  cursor: pointer;
+}
+.Avatar-container button{
+  height: 0px;
+  font-weight: 700;
+  color:red;
+}
+
+.remove-button {
+  margin-top: 57px;
+  margin-left: 12px;
+  font-size: 0.9rem;
+  color: red;
+
+  text-align: center;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.Avatar-img {
+  border-radius: 50%;
+}
