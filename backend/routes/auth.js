@@ -13,15 +13,6 @@ const { CloudinaryStorage } = require('multer-storage-cloudinary');
 const multer = require('multer');
 const path = require("path");
 
-// const storage = multer.diskStorage({
-//   destination: function (req, file, cb) {
-//     cb(null, "uploads/");
-//   },
-//   filename: function (req, file, cb) {
-//     cb(null, Date.now() + path.extname(file.originalname));
-//   },
-// });
-
 cloudinary.config({
   cloud_name: "dt5is8c0t",
   api_key: "531397895516732",
@@ -30,14 +21,14 @@ cloudinary.config({
 const storage = new CloudinaryStorage({
   cloudinary: cloudinary,
   params: {
-    folder: 'profile_images', // Folder in Cloudinary
-    format: async (req, file) => 'jpg', // Format to convert image to
-    public_id: (req, file) => Date.now(), // Unique identifier for image
+    folder: 'profile_images', 
+    format: async (req, file) => 'jpg', 
+    public_id: (req, file) => Date.now(), 
   },
 });
 
 const upload = multer({ storage });
-// Delete user's image route
+
 router.delete("/deleteImage", authMiddleware, async (req, res) => {
   try {
     const userId = req.user.id;
@@ -47,9 +38,9 @@ router.delete("/deleteImage", authMiddleware, async (req, res) => {
       return res.status(404).json({ msg: "No profile image found" });
     }
 
-    const publicId = user.profileImage.split('/').pop().split('.')[0]; // Extract public_id from URL
+    const publicId = user.profileImage.split('/').pop().split('.')[0]; 
 
-    await cloudinary.uploader.destroy(`profile_images/${publicId}`); // Delete image from Cloudinary
+    await cloudinary.uploader.destroy(`profile_images/${publicId}`); 
     await User.updateOne({ _id: userId }, { $unset: { profileImage: "" } });
 
     res.status(200).json({ msg: "Image deleted successfully" });
@@ -66,7 +57,7 @@ router.post("/uploadImage", authMiddleware, upload.single("image"), async (req, 
       return res.status(404).json({ msg: "User not found" });
     }
 
-    // Cloudinary URL for the uploaded image
+   
     user.profileImage = req.file.path; // This contains the Cloudinary URL
     await user.save();
 
@@ -78,17 +69,17 @@ router.post("/uploadImage", authMiddleware, upload.single("image"), async (req, 
 });
 router.get("/USER", authMiddleware, async (req, res) => {
   try {
-    // Fetch the user by ID
+   
     const user = await User.findById(req.user.id);
     
-    // Check if the user exists
+  
     if (!user) {
       return res.status(404).json({ msg: "User not found" });
     }
 
-    // Respond with the user info and Cloudinary image URL
+    
     res.json({
-      profileImage: user.profileImage, // This should already be a Cloudinary URL or a default image URL
+      profileImage: user.profileImage, //
       firstName: user.firstName || "First Name",
       lastName: user.lastName || "Last Name",
       email: user.email || "email@example.com",
