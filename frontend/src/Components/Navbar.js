@@ -44,6 +44,7 @@ const Navbar = () => {
         setFname(res.data.firstName);
         setLname(res.data.lastName);
         setEmail(res.data.email);
+        console.log(imagePath);
       } catch (err) {
         console.error(err.message);
       }

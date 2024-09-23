@@ -76,42 +76,6 @@ router.post("/uploadImage", authMiddleware, upload.single("image"), async (req, 
     res.status(500).send("Server Error");
   }
 });
-// router.delete("/deleteImage", authMiddleware, async (req, res) => {
-//   try {
-//     const userId = req.user.id;
-
-//     await User.updateOne({ _id: userId }, { $unset: { profileImage: "" } });
-
-//     res.status(200).json({ msg: "Image deleted successfully" });
-//   } catch (error) {
-//     res.status(500).json({ msg: "Error deleting image" });
-//   }
-// });
-
-// router.post(
-//   "/uploadImage",
-//   authMiddleware,
-//   upload.single("image"),
-//   async (req, res) => {
-//     try {
-//       const userId = req.user.id;
-//       const user = await User.findById(userId);
-
-//       if (!user) {
-//         return res.status(404).json({ msg: "User not found" });
-//       }
-
-//       user.profileImage = req.file.path;
-//       await user.save();
-
-//       res.json({ imageUrl: user.profileImage });
-//     } catch (err) {
-//       console.error(err.message);
-//       res.status(500).send("Server Error");
-//     }
-//   }
-// );
-
 router.get("/USER", authMiddleware, async (req, res) => {
   try {
     // Fetch the user by ID
