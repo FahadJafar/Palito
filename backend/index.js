@@ -8,7 +8,16 @@ const path = require("path"); // Import path module
 const app = express();
 
 app.use(express.json());
-app.use(cors());
+const corsOptions = {
+  origin: 'https://palito.vercel.app',
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization'],
+};
+
+app.use(cors(corsOptions));
+
+
+app.use(cors(corsOptions));
 
 
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
