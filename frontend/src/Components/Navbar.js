@@ -38,12 +38,12 @@ const Navbar = () => {
             Authorization: `Bearer ${token}`,
           },
         });
-        const profileImagePath = response.data.profileImage;
-        setImage(profileImagePath || "../Img/pro.jpg"); // Use the Cloudinary URL directly
+        const profileImagePath = res.data.profileImage;
+        setProfileImage(profileImagePath || "../Img/pro.jpg"); // Use the Cloudinary URL directly
         setFname(res.data.firstName);
         setLname(res.data.lastName);
         setEmail(res.data.email);
-        console.log(imagePath);
+        console.log(profileImagePath);
       } catch (err) {
         console.error(err.message);
       }
