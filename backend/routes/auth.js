@@ -8,24 +8,48 @@ const nodemailer = require("nodemailer");
 const User = require("../models/User");
 const Folder = require("../models/Folder");
 const authMiddleware = require("./middleware");
-const multer = require("multer");
+const cloudinary = require('cloudinary').v2;
+const { CloudinaryStorage } = require('multer-storage-cloudinary');
+const multer = require('multer');
 const path = require("path");
 
-const storage = multer.diskStorage({
-  destination: function (req, file, cb) {
-    cb(null, "uploads/");
-  },
-  filename: function (req, file, cb) {
-    cb(null, Date.now() + path.extname(file.originalname));
+// const storage = multer.diskStorage({
+//   destination: function (req, file, cb) {
+//     cb(null, "uploads/");
+//   },
+//   filename: function (req, file, cb) {
+//     cb(null, Date.now() + path.extname(file.originalname));
+//   },
+// });
+
+cloudinary.config({
+  cloud_name: "dt5is8c0t",
+  api_key: "531397895516732",
+  api_secret: "lsxXZJSNqGM-GvE1In7VA--nd1U",
+});
+const storage = new CloudinaryStorage({
+  cloudinary: cloudinary,
+  params: {
+    folder: 'profile_images', // Folder in Cloudinary
+    format: async (req, file) => 'jpg', // Format to convert image to
+    public_id: (req, file) => Date.now(), // Unique identifier for image
   },
 });
 
 const upload = multer({ storage });
-
+// Delete user's image route
 router.delete("/deleteImage", authMiddleware, async (req, res) => {
   try {
     const userId = req.user.id;
 
+    const user = await User.findById(userId);
+    if (!user || !user.profileImage) {
+      return res.status(404).json({ msg: "No profile image found" });
+    }
+
+    const publicId = user.profileImage.split('/').pop().split('.')[0]; // Extract public_id from URL
+
+    await cloudinary.uploader.destroy(`profile_images/${publicId}`); // Delete image from Cloudinary
     await User.updateOne({ _id: userId }, { $unset: { profileImage: "" } });
 
     res.status(200).json({ msg: "Image deleted successfully" });
@@ -33,30 +57,60 @@ router.delete("/deleteImage", authMiddleware, async (req, res) => {
     res.status(500).json({ msg: "Error deleting image" });
   }
 });
+router.post("/uploadImage", authMiddleware, upload.single("image"), async (req, res) => {
+  try {
+    const userId = req.user.id;
+    const user = await User.findById(userId);
 
-router.post(
-  "/uploadImage",
-  authMiddleware,
-  upload.single("image"),
-  async (req, res) => {
-    try {
-      const userId = req.user.id;
-      const user = await User.findById(userId);
-
-      if (!user) {
-        return res.status(404).json({ msg: "User not found" });
-      }
-
-      user.profileImage = req.file.path;
-      await user.save();
-
-      res.json({ imageUrl: user.profileImage });
-    } catch (err) {
-      console.error(err.message);
-      res.status(500).send("Server Error");
+    if (!user) {
+      return res.status(404).json({ msg: "User not found" });
     }
+
+    // Cloudinary URL for the uploaded image
+    user.profileImage = req.file.path; // This contains the Cloudinary URL
+    await user.save();
+
+    res.json({ imageUrl: user.profileImage });
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).send("Server Error");
   }
-);
+});
+// router.delete("/deleteImage", authMiddleware, async (req, res) => {
+//   try {
+//     const userId = req.user.id;
+
+//     await User.updateOne({ _id: userId }, { $unset: { profileImage: "" } });
+
+//     res.status(200).json({ msg: "Image deleted successfully" });
+//   } catch (error) {
+//     res.status(500).json({ msg: "Error deleting image" });
+//   }
+// });
+
+// router.post(
+//   "/uploadImage",
+//   authMiddleware,
+//   upload.single("image"),
+//   async (req, res) => {
+//     try {
+//       const userId = req.user.id;
+//       const user = await User.findById(userId);
+
+//       if (!user) {
+//         return res.status(404).json({ msg: "User not found" });
+//       }
+
+//       user.profileImage = req.file.path;
+//       await user.save();
+
+//       res.json({ imageUrl: user.profileImage });
+//     } catch (err) {
+//       console.error(err.message);
+//       res.status(500).send("Server Error");
+//     }
+//   }
+// );
 
 router.get("/USER", authMiddleware, async (req, res) => {
   try {

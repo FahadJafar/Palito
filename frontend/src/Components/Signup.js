@@ -90,7 +90,7 @@ const Signup = () => {
       <h1>
         Pa<span>lito.</span>
       </h1>
-      asdasd
+
       <div className="Container-Signup">
         <form onSubmit={HandleSubmit}>
           <div className="Size">
@@ -101,7 +101,7 @@ const Signup = () => {
           <div className="NameFields">
             <div className="NameField">
               <p>First Name</p>
-              asdasd
+      
               <input
                 placeholder="John"
                 onChange={(e) => setFname(e.target.value)}
