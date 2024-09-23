@@ -65,7 +65,7 @@ const Login = () => {
   return (
     <div className="Home">
       <h1>
-        Pa<span>lito</span>
+        Pa<span>lito.</span>
       </h1>
       <div className="Container1">
         <form onSubmit={handleSubmit}>
