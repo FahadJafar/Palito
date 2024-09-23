@@ -44,7 +44,7 @@ code {
   top: 148px;
   left: 514px;
   gap: 0px;
-  opacity: 0px;
+  opacity: 1;
 
   border: 1px solid #fbfbfb;
   box-shadow: 0px 15px 15px 0px #d6d6d6;
