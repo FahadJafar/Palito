@@ -19,6 +19,9 @@ mongoose
   .catch((err) => console.error(err));
 
 app.use("/api/auth", authRoutes);
+router.get("/", (req, res) => {
+  res.send("Welcome to Fahad Jafars Palito Backend");
+});
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => console.log("Server started on port", PORT));
