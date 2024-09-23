@@ -31,9 +31,7 @@ const Setting = ({ onEmailEdit, onPassEdit }) => {
         });
         
         const profileImagePath = response.data.profileImage;
-        const baseURL = "https://palito-backend1.vercel.app/"; 
-
-        setImage(profileImagePath ? `${baseURL}${profileImagePath}` : "../Img/pro.jpg");
+        setImage(profileImagePath || "../Img/pro.jpg"); // Use the Cloudinary URL directly
         setFname(response.data.firstName);
         setLname(response.data.lastName);
       } catch (error) {
@@ -44,7 +42,7 @@ const Setting = ({ onEmailEdit, onPassEdit }) => {
     
     fetchUserData();
   }, []);
-
+  
   const handleNameToggle = () => {
     setnameisTrue(!nameisTrue);
   };
@@ -85,12 +83,38 @@ const Setting = ({ onEmailEdit, onPassEdit }) => {
     }
   };
 
+  // const handleImageUpload = async (event) => {
+  //   const file = event.target.files[0];
+  //   if (file) {
+  //     const formData = new FormData();
+  //     formData.append("image", file);
+
+  //     try {
+  //       const response = await axios.post("https://palito-backend1.vercel.app/api/auth/uploadImage", formData, {
+  //         headers: {
+  //           'Authorization': `Bearer ${localStorage.getItem("token")}`,
+  //           'Content-Type': 'multipart/form-data'
+  //         }
+  //       });
+        
+  //       const baseURL = "http://localhost:5000/";
+  //       setImage(`${baseURL}${response.data.imageUrl}`); 
+  //       localStorage.setItem("profileImage", response.data.imageUrl);
+  //       toast.success("Image uploaded successfully");
+  //     } catch (error) {
+  //       toast.error("Error uploading image");
+  //     }
+  //   }
+  // };
+  // useEffect(()=>{
+
+  // },[image])
   const handleImageUpload = async (event) => {
     const file = event.target.files[0];
     if (file) {
       const formData = new FormData();
       formData.append("image", file);
-
+  
       try {
         const response = await axios.post("https://palito-backend1.vercel.app/api/auth/uploadImage", formData, {
           headers: {
@@ -98,9 +122,9 @@ const Setting = ({ onEmailEdit, onPassEdit }) => {
             'Content-Type': 'multipart/form-data'
           }
         });
-        
-        const baseURL = "http://localhost:5000/";
-        setImage(`${baseURL}${response.data.imageUrl}`); 
+  
+        // No need to prepend baseURL
+        setImage(response.data.imageUrl); 
         localStorage.setItem("profileImage", response.data.imageUrl);
         toast.success("Image uploaded successfully");
       } catch (error) {
@@ -108,10 +132,7 @@ const Setting = ({ onEmailEdit, onPassEdit }) => {
       }
     }
   };
-  // useEffect(()=>{
-
-  // },[image])
-
+  
   const handleImageRemove = async () => {
     try {
       await axios.delete("https://palito-backend1.vercel.app/api/auth/deleteImage", {
