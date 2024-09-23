@@ -10,7 +10,6 @@ import MoreVertIcon from "@mui/icons-material/MoreVert";
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
 import DeleteOutlineIcon from "@mui/icons-material/DeleteOutline";
-import img1 from "../Img/pro.jpg"; // default image
 import { useNavigate } from "react-router-dom";
 import logo from "../Img/refresh.png";
 import logo2 from "../Img/Add.png";
@@ -71,6 +70,10 @@ const Navbar = () => {
   const handleSETTINGS = () => {
     localStorage.setItem("showSettings", "1");
     Nav("/Home"); // Navigating to the home page where the Settings view will show
+  };
+  const handleSETTINGS1 = () => {
+    localStorage.setItem("showSettings", "0");
+    Nav("/Home");
   };
 
   const handleLogout = () => {
@@ -161,7 +164,7 @@ const Navbar = () => {
       <nav>
         <div className="Adjust">
           {sideBar ? (
-            <h1>
+            <h1 className="Direct" onClick={handleSETTINGS1}>
               Pa<span>lito.</span>
             </h1>
           ) : (

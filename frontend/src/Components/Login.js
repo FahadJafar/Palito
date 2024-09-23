@@ -41,6 +41,7 @@ const Login = () => {
       localStorage.setItem("email",email);
       console.log(response.data);
       toast.success("Login Successful!");
+      localStorage.setItem("showSettings", "0");
       Nav("/Home",{state:{msg:"Login Successful !"}});
 
     } catch (error)
@@ -111,7 +112,7 @@ const Login = () => {
           <button>Login</button>
           <div className="Link2">
             {text}
-            <Link to="/Signup">Register Now</Link>
+            <Link className="Link-1" to="/Signup">Register Now</Link>
           </div>
           
         </form>

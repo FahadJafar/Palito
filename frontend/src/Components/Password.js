@@ -16,7 +16,7 @@ const Password = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
+    
     const validationError = validatePassword(newPass, confPass);
     if (validationError) {
       toast.error(validationError);
@@ -41,11 +41,15 @@ const Password = () => {
         }
       );
       toast.success(response.data.msg);
+      setOldPass("");
+    setNewPass("");
+    setConfPass("");
     } catch (err) {
       if (err.response && err.response.data && err.response.data.msg) {
         toast.error(err.response.data.msg);
       } else {
         toast.error("An error occurred while changing the password");
+      
       }
     }
   };

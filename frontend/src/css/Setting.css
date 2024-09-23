@@ -14,16 +14,16 @@
   align-items: center;
   justify-content: flex-start;
   width: 100%;
-  padding-left: 38px;
+  margin-left: 52%;
 }
 
 .Setting h2 {
   font-family: Manrope;
   font-size: 24px;
   font-weight: 700;
-  text-align:left;
+  text-align: left;
   margin-left: 170px;
-  margin-top:50px;
+  margin-top: 50px;
   line-height: 32.78px;
   margin-bottom: 20px;
 }
@@ -32,27 +32,25 @@
   font-size: 16px;
   font-weight: 700;
   text-align: center;
-  margin:0;
+  margin: 0;
   cursor: pointer;
   line-height: 32.78px;
   margin-bottom: 7px;
 }
-.Setting .IconArrow
-{
+.Setting .IconArrow {
   margin-right: 5px;
 }
 
 .Setting-Container {
   width: 696px;
-  margin-left: 205px;
+  margin-left: 100%;
   border: 1px solid rgba(227, 227, 227, 1);
   box-shadow: 5px 5px 15px 0px rgba(185, 185, 185, 0.25);
-
   background-color: rgba(255, 255, 255, 1);
   border-radius: 15px;
   max-width: 696px;
   align-items: center;
-  height:540px;
+  height: 530px;
   max-height: 610px;
 }
 .Setting-Container h4 {
@@ -194,7 +192,7 @@ font-weight: 600;
   align-items: left;
   text-align: left;
   width: 100%;
-  gap:265px;
+  gap: 265px;
 }
 
 .Cname-labels h2 {
@@ -202,7 +200,7 @@ font-weight: 600;
   font-size: 16px;
   font-weight: 500;
   line-height: 21.86px;
-  margin:0;
+  margin: 0;
   text-align: left;
   color: rgba(66, 75, 92, 1);
 }
@@ -214,16 +212,16 @@ font-weight: 600;
 }
 
 .Cname-inputs input {
-  width: 48%; 
+  width: 48%;
   height: 45px;
   border-radius: 5px;
   border: 1px solid rgba(227, 227, 227, 1);
   padding-left: 8px;
   font-weight: 600;
-  color:black;
+  color: black;
 }
-.Cname-inputs input::placeholder{
-  color:black;
+.Cname-inputs input::placeholder {
+  color: black;
 }
 
 .Cname-button {
@@ -253,7 +251,9 @@ font-weight: 600;
     width: 526px;
   }
 
-  .NAME, .EMAIL, .Pass {
+  .NAME,
+  .EMAIL,
+  .Pass {
     font-size: 13px;
   }
 
@@ -272,11 +272,13 @@ font-weight: 600;
 
   .Setting-Container {
     width: 456px;
-    
+
     margin: 10px;
   }
 
-  .NAME, .EMAIL, .Pass {
+  .NAME,
+  .EMAIL,
+  .Pass {
     flex-direction: column;
     padding: 10px;
   }
@@ -305,7 +307,9 @@ font-weight: 600;
     padding: 10px;
   }
 
-  .NAME, .EMAIL, .Pass {
+  .NAME,
+  .EMAIL,
+  .Pass {
     font-size: 14px;
   }
 
@@ -315,19 +319,16 @@ font-weight: 600;
   }
 }
 
-
 .upload-button {
   display: none;
 }
 
-
 .Avatar-container {
   position: relative;
   display: flex;
-  align-items:left;
-  justify-content:left;
+  align-items: left;
+  justify-content: left;
 }
-
 
 .image-icon {
   position: absolute;
@@ -338,10 +339,10 @@ font-weight: 600;
   padding: 8px;
   cursor: pointer;
 }
-.Avatar-container button{
+.Avatar-container button {
   height: 0px;
   font-weight: 700;
-  color:red;
+  color: red;
 }
 
 .remove-button {

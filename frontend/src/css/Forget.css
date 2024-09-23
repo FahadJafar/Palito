@@ -17,7 +17,7 @@ body {
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  height: 100vh;
+  height: 60vh;
 }
 
 .forget-password h1 {
@@ -27,7 +27,7 @@ body {
   font-size: 2rem;
   font-weight: 800;
   line-height: 1.25;
-  color: #09bc8a;
+  color: #088864;
 }
 .form-container .Size p {
   text-align: center;
@@ -127,6 +127,12 @@ span {
 .ErrorMessage p
 {
   color:red;
+}
+.Link-1
+{
+  text-decoration: none;
+  color: #09bc8a;
+  text-decoration: underline;
 }
 
 @media (max-width: 768px) {
