@@ -1,5 +1,5 @@
 import Login from "./Components/Login";
-import Signup from "./Components//Signup";
+import Signup from "./Components/Signup";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Reset from "./Components/Reset";
 import ResetPass from "./Components/ResetPass";

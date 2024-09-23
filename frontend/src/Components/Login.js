@@ -39,7 +39,7 @@ const Login = () => {
       localStorage.setItem("fname",response.data.user.fname);
       localStorage.setItem("lname",response.data.user.lname);
       localStorage.setItem("email",email);
-      console.log(response.data);
+      
       toast.success("Login Successful!");
       localStorage.setItem("showSettings", "0");
       Nav("/Home",{state:{msg:"Login Successful !"}});
