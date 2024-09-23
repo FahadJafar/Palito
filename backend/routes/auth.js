@@ -114,29 +114,27 @@ router.post("/uploadImage", authMiddleware, upload.single("image"), async (req, 
 
 router.get("/USER", authMiddleware, async (req, res) => {
   try {
+    // Fetch the user by ID
     const user = await User.findById(req.user.id);
+    
+    // Check if the user exists
     if (!user) {
       return res.status(404).json({ msg: "User not found" });
     }
+
+    // Respond with the user info and Cloudinary image URL
     res.json({
-      profileImage: user.profileImage,
-      firstName: user.firstName,
-      lastName: user.lastName,
-      email: user.email,
+      profileImage: user.profileImage, // This should already be a Cloudinary URL or a default image URL
+      firstName: user.firstName || "First Name",
+      lastName: user.lastName || "Last Name",
+      email: user.email || "email@example.com",
     });
   } catch (err) {
-    console.error(err.message);
+    console.error("Error fetching user data:", err.message);
     res.status(500).send("Server Error");
   }
 });
 
-const transporter = nodemailer.createTransport({
-  service: "Gmail",
-  auth: {
-    user: "fahadjaffer123@gmail.com",
-    pass: "zhvesqzcrayluxuy",
-  },
-});
 
 router.post("/forgot-password", async (req, res) => {
   const { email } = req.body;

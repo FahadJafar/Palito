@@ -123,7 +123,7 @@ const Setting = ({ onEmailEdit, onPassEdit }) => {
           }
         });
   
-        // No need to prepend baseURL
+    
         setImage(response.data.imageUrl); 
         localStorage.setItem("profileImage", response.data.imageUrl);
         toast.success("Image uploaded successfully");
