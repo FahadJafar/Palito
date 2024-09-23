@@ -38,9 +38,8 @@ const Navbar = () => {
             Authorization: `Bearer ${token}`,
           },
         });
-        const imagePath = res.data.profileImage ? baseURL + res.data.profileImage : null; 
-
-        setProfileImage(imagePath);
+        const profileImagePath = response.data.profileImage;
+        setImage(profileImagePath || "../Img/pro.jpg"); // Use the Cloudinary URL directly
         setFname(res.data.firstName);
         setLname(res.data.lastName);
         setEmail(res.data.email);
