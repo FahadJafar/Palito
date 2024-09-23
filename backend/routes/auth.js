@@ -367,5 +367,8 @@ router.delete("/folders/:id", authMiddleware, async (req, res) => {
     res.status(500).send("Server Error");
   }
 });
+router.get("/", (req, res) => {
+  res.send("Welcome to Fahad Jafars Palito Backend");
+});
 
 module.exports = router;
