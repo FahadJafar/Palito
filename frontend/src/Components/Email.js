@@ -46,7 +46,7 @@ const Email = () => {
       }
 
       const response = await axios.post(
-        "http://localhost:5000/api/auth/updateEmail",
+        "https://palito-backend1.vercel.app/api/auth/updateEmail",
         { newEmail, password },
         {
           headers: {

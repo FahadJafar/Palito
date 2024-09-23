@@ -32,7 +32,7 @@ const Password = () => {
       const token = localStorage.getItem("token");
 
       const response = await axios.post(
-        "http://localhost:5000/api/auth/changePassword",
+        "https://palito-backend1.vercel.app/api/auth/changePassword",
         obj,
         {
           headers: {

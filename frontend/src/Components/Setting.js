@@ -24,14 +24,14 @@ const Setting = ({ onEmailEdit, onPassEdit }) => {
   useEffect(() => {
     const fetchUserData = async () => {
       try {
-        const response = await axios.get("http://localhost:5000/api/auth/user", {
+        const response = await axios.get("https://palito-backend1.vercel.app/api/auth/user", {
           headers: {
             'Authorization': `Bearer ${localStorage.getItem("token")}` 
           }
         });
         
         const profileImagePath = response.data.profileImage;
-        const baseURL = "http://localhost:5000/"; 
+        const baseURL = "https://palito-backend1.vercel.app/"; 
 
         setImage(profileImagePath ? `${baseURL}${profileImagePath}` : "../Img/pro.jpg");
         setFname(response.data.firstName);
@@ -67,7 +67,7 @@ const Setting = ({ onEmailEdit, onPassEdit }) => {
     }
 
     try {
-      const response = await axios.post("http://localhost:5000/api/auth/update", {
+      const response = await axios.post("https://palito-backend1.vercel.app/api/auth/update", {
         firstName: Fname,
         lastName: Lname
       }, {
@@ -92,7 +92,7 @@ const Setting = ({ onEmailEdit, onPassEdit }) => {
       formData.append("image", file);
 
       try {
-        const response = await axios.post("http://localhost:5000/api/auth/uploadImage", formData, {
+        const response = await axios.post("https://palito-backend1.vercel.app/api/auth/uploadImage", formData, {
           headers: {
             'Authorization': `Bearer ${localStorage.getItem("token")}`,
             'Content-Type': 'multipart/form-data'
@@ -114,7 +114,7 @@ const Setting = ({ onEmailEdit, onPassEdit }) => {
 
   const handleImageRemove = async () => {
     try {
-      await axios.delete("http://localhost:5000/api/auth/deleteImage", {
+      await axios.delete("https://palito-backend1.vercel.app/api/auth/deleteImage", {
         headers: {
           'Authorization': `Bearer ${localStorage.getItem("token")}`
         }

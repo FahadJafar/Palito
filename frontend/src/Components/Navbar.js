@@ -28,12 +28,12 @@ const Navbar = () => {
   const [email, setEmail] = useState("");
   const Nav = useNavigate();
   const token = localStorage.getItem("token");
-  const baseURL = "http://localhost:5000/"; 
+  const baseURL = "https://palito-backend1.vercel.app/"; 
 
   useEffect(() => {
     const fetchUserData = async () => {
       try {
-        const res = await axios.get("http://localhost:5000/api/auth/USER", {
+        const res = await axios.get("https://palito-backend1.vercel.app/api/auth/USER", {
           headers: {
             Authorization: `Bearer ${token}`,
           },
@@ -54,7 +54,7 @@ const Navbar = () => {
   useEffect(() => {
     const fetchFolders = async () => {
       try {
-        const res = await axios.get("http://localhost:5000/api/auth/folders", {
+        const res = await axios.get("https://palito-backend1.vercel.app/api/auth/folders", {
           headers: {
             Authorization: `Bearer ${token}`,
           },
@@ -91,7 +91,7 @@ const Navbar = () => {
   const addNewFolder = async () => {
     try {
       const res = await axios.post(
-        "http://localhost:5000/api/auth/folders",
+        "https://palito-backend1.vercel.app/api/auth/folders",
         { name: "New Folder" },
         {
           headers: {
@@ -120,7 +120,7 @@ const Navbar = () => {
     if (newName) {
       try {
         const res = await axios.put(
-          `http://localhost:5000/api/auth/folders/${currentFolder._id}`,
+          `https://palito-backend1.vercel.app/api/auth/folders/${currentFolder._id}`,
           { name: newName },
           {
             headers: {
@@ -145,7 +145,7 @@ const Navbar = () => {
   const handleDelete = async () => {
     try {
       await axios.delete(
-        `http://localhost:5000/api/auth/folders/${currentFolder._id}`,
+        `https://palito-backend1.vercel.app/api/auth/folders/${currentFolder._id}`,
         {
           headers: {
             Authorization: `Bearer ${token}`,

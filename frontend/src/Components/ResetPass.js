@@ -24,7 +24,7 @@ const ResetPass = () => {
 
     try {
       const response = await axios.post(
-        `http://localhost:5000/api/auth/reset-password/${token}`,
+        `https://palito-backend1.vercel.app/api/auth/reset-password/${token}`,
         { password: pass }
       );
 
