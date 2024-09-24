@@ -240,8 +240,50 @@ font-weight: 600;
   cursor: pointer;
   width: 25%;
 }
+.image-icon {
+  position: absolute;
+  bottom: 47px;
+  right: 594px;
+  background-color: rgba(0, 0, 0, 0.5);
+  border-radius: 50%;
+  padding: 8px;
+  cursor: pointer;
+}
 
-@media (max-width: 1087px) {
+.upload-button {
+  display: none;
+}
+
+.Avatar-container {
+  position: relative;
+  display: flex;
+  align-items: left;
+  justify-content: left;
+}
+
+
+.Avatar-container button {
+  height: 0px;
+  font-weight: 700;
+  color: red;
+}
+
+.remove-button {
+  margin-top: 57px;
+  margin-left: 12px;
+  font-size: 0.9rem;
+  color: red;
+
+  text-align: center;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.Avatar-img {
+  border-radius: 50%;
+}
+
+@media (max-width: 1550px) {
   .Setting h2 {
     font-size: 17px;
   }
@@ -250,6 +292,24 @@ font-weight: 600;
     padding: 8px;
     width: 526px;
   }
+  .image-icon {
+    position: absolute;
+    bottom: 47px;
+    right: 408px;
+    background-color: rgba(0, 0, 0, 0.5);
+    border-radius: 50%;
+    padding: 8px;
+    cursor:cell;
+  }
+  .Setting .Adjust {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+    width: 100%;
+    margin-left: 38%;
+  }
+  
 
   .NAME,
   .EMAIL,
@@ -263,6 +323,7 @@ font-weight: 600;
   }
 }
 
+
 @media (max-width: 920px) {
   .Setting h2 {
     margin-left: 0;
@@ -274,6 +335,23 @@ font-weight: 600;
     width: 456px;
 
     margin: 10px;
+  }
+  .image-icon {
+    position: absolute;
+    bottom: 47px;
+    right: 335px;
+    background-color: rgba(0, 0, 0, 0.5);
+    border-radius: 50%;
+    padding: 8px;
+    cursor:cell;
+  }
+  .Setting .Adjust {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+    width: 100%;
+    margin-left: 8%;
   }
 
   .NAME,
@@ -317,45 +395,4 @@ font-weight: 600;
     font-size: 0.9rem;
     padding: 6px 12px;
   }
-}
-
-.upload-button {
-  display: none;
-}
-
-.Avatar-container {
-  position: relative;
-  display: flex;
-  align-items: left;
-  justify-content: left;
-}
-
-.image-icon {
-  position: absolute;
-  bottom: 47px;
-  right: 594px;
-  background-color: rgba(0, 0, 0, 0.5);
-  border-radius: 50%;
-  padding: 8px;
-  cursor: pointer;
-}
-.Avatar-container button {
-  height: 0px;
-  font-weight: 700;
-  color: red;
-}
-
-.remove-button {
-  margin-top: 57px;
-  margin-left: 12px;
-  font-size: 0.9rem;
-  color: red;
-
-  text-align: center;
-  border-radius: 5px;
-  cursor: pointer;
-}
-
-.Avatar-img {
-  border-radius: 50%;
 }

@@ -101,7 +101,50 @@
   border: 1px solid rgba(9, 188, 138, 1);
   background-color: rgba(9, 188, 138, 1);
 }
-
+@media (max-width: 1444px) {
+  .Email {
+    margin-top: 8%;
+    margin-right: 5%;
+  }
+  
+  .Email-Container {
+    padding: 10px;
+    width: 90%;
+    padding-right:20px;
+  }
+  
+  .Email-Container input {
+    max-width: 100%; 
+  }
+  
+  .Email-Container button {
+    width: 100%; 
+    max-width: none; 
+  }
+}
+@media (max-width: 1024px) {
+  .Email {
+    margin-top: 8%;
+     margin-right:25%;
+  }
+  
+  .Email-Container {
+    padding: 10px;
+    width: 90%;
+    padding-right:20px;
+  }
+  
+  .Email-Container input {
+    max-width: 100%; 
+  }
+  
+  .Email-Container button {
+    width: 100%; 
+    padding:10px;
+    font-size: 0.7rem;
+    max-width: none; 
+  }
+}
 
 @media (max-width: 768px) {
   .Email {
