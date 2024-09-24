@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import Avatar from "@mui/material/Avatar";
 import ArrowForwardIosOutlinedIcon from "@mui/icons-material/ArrowForwardIosOutlined";
 import KeyboardBackspaceIcon from "@mui/icons-material/KeyboardBackspace";
@@ -13,9 +13,14 @@ import axios from "axios";
 import { AppContext } from "../Context/UserContext";
 
 const Setting = ({ onEmailEdit, onPassEdit }) => {
-  const fname = localStorage.getItem("fname");
-  const lname = localStorage.getItem("lname");
-  const email = localStorage.getItem("email");
+  const {
+    fname,
+    lname,
+    email,
+    setFname: setContextFname,
+    setLname: setContextLname,
+    setProfileImage,
+  } = useContext(AppContext); // Access context values
   const [nameisTrue, setnameisTrue] = useState(true);
   const [Fname, setFname] = useState(fname || "");
   const [Lname, setLname] = useState(lname || "");
@@ -75,6 +80,10 @@ const Setting = ({ onEmailEdit, onPassEdit }) => {
         }
       });
 
+      // Update context state
+      setContextFname(Fname);
+      setContextLname(Lname);
+      
       localStorage.setItem("fname", Fname);
       localStorage.setItem("lname", Lname);
       toast.success(response.data.msg);
@@ -84,32 +93,6 @@ const Setting = ({ onEmailEdit, onPassEdit }) => {
     }
   };
 
-  // const handleImageUpload = async (event) => {
-  //   const file = event.target.files[0];
-  //   if (file) {
-  //     const formData = new FormData();
-  //     formData.append("image", file);
-
-  //     try {
-  //       const response = await axios.post("https://palito-backend1.vercel.app/api/auth/uploadImage", formData, {
-  //         headers: {
-  //           'Authorization': `Bearer ${localStorage.getItem("token")}`,
-  //           'Content-Type': 'multipart/form-data'
-  //         }
-  //       });
-        
-  //       const baseURL = "http://localhost:5000/";
-  //       setImage(`${baseURL}${response.data.imageUrl}`); 
-  //       localStorage.setItem("profileImage", response.data.imageUrl);
-  //       toast.success("Image uploaded successfully");
-  //     } catch (error) {
-  //       toast.error("Error uploading image");
-  //     }
-  //   }
-  // };
-  // useEffect(()=>{
-
-  // },[image])
   const handleImageUpload = async (event) => {
     const file = event.target.files[0];
     if (file) {
@@ -124,8 +107,8 @@ const Setting = ({ onEmailEdit, onPassEdit }) => {
           }
         });
   
-    
         setImage(response.data.imageUrl); 
+        setProfileImage(response.data.imageUrl); // Update context
         localStorage.setItem("profileImage", response.data.imageUrl);
         toast.success("Image uploaded successfully");
       } catch (error) {
@@ -143,6 +126,7 @@ const Setting = ({ onEmailEdit, onPassEdit }) => {
       });
 
       setImage(null);
+      setProfileImage(null); // Update context
       localStorage.removeItem("profileImage");
       toast.success("Avatar removed");
     } catch (error) {

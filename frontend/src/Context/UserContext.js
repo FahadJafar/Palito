@@ -50,7 +50,7 @@ const AppProvider = ({ children }) => {
   }, [token,fname, lname, email, profileImage]);
 
   return (
-    <AppContext.Provider value={{ folders, setFolders, profileImage, fname, lname, email }}>
+    <AppContext.Provider value={{ folders, setFolders, profileImage,setProfileImage, fname,setFname, lname,setLname, email,setEmail }}>
       {children}
     </AppContext.Provider>
   );
