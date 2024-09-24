@@ -31,7 +31,7 @@ const AppProvider = ({ children }) => {
       }
     };
     fetchUserData();
-  }, [token]);
+  }, [token,fname, lname, email, profileImage]);
 
   useEffect(() => {
     const fetchFolders = async () => {
