@@ -13,6 +13,13 @@ const { CloudinaryStorage } = require('multer-storage-cloudinary');
 const multer = require('multer');
 const path = require("path");
 
+const transporter = nodemailer.createTransport({
+  service: "Gmail", 
+  auth: {
+    user: "fahadjaffer123@gmail.com", 
+    pass: "qxcqatvwdoxzrlnt", 
+  },
+});
 cloudinary.config({
   cloud_name: "dt5is8c0t",
   api_key: "531397895516732",
