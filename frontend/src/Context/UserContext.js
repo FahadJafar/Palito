@@ -47,7 +47,7 @@ const AppProvider = ({ children }) => {
       }
     };
     fetchFolders();
-  }, [token]);
+  }, [token,fname, lname, email, profileImage]);
 
   return (
     <AppContext.Provider value={{ folders, setFolders, profileImage, fname, lname, email }}>
