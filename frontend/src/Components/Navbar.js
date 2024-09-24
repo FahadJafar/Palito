@@ -20,7 +20,7 @@ import axios from "axios";
 import { ToastContainer } from "react-toastify";
 
 const Navbar = () => {
-  const { folders, setFolders, profileImage, fname, lname, email } =
+  const { folders, setFolders, profileImage, fname, lname, email,setFname,setLname,setEmail } =
     useContext(AppContext);
   const [sideBar, setSideBar] = useState(true);
   const [anchorEl, setAnchorEl] = useState(null);
@@ -41,6 +41,9 @@ const Navbar = () => {
 
   const handleLogout = () => {
     localStorage.removeItem("token");
+    setFname("");
+  setLname("");
+  setEmail("");
     Nav("/Login");
   };
 
