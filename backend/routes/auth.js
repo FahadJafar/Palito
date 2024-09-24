@@ -105,7 +105,7 @@ router.post("/forgot-password", async (req, res) => {
     user.resetPasswordExpires = Date.now() + 3600000;
     await user.save();
 
-    const resetUrl = `http://localhost:3000/reset-password/${resetToken}`;
+    const resetUrl = `https://your-frontend-url.vercel.app/reset-password/${resetToken}`;
     const mailOptions = {
       from: "fahadjaffer123@gmail.com",
       to: email,
