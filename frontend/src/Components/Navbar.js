@@ -41,6 +41,10 @@ const Navbar = () => {
 
   const handleLogout = () => {
     localStorage.removeItem("token");
+    localStorage.removeItem("fname");
+    localStorage.removeItem("lname");
+    localStorage.removeItem("email");
+    localStorage.removeItem("profileImage");
     setFname("");
   setLname("");
   setEmail("");
