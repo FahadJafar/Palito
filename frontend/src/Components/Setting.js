@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import Avatar from "@mui/material/Avatar";
 import ArrowForwardIosOutlinedIcon from "@mui/icons-material/ArrowForwardIosOutlined";
 import KeyboardBackspaceIcon from "@mui/icons-material/KeyboardBackspace";
@@ -10,14 +10,14 @@ import "bootstrap/dist/css/bootstrap.css";
 import CameraAltIcon from "@mui/icons-material/CameraAlt"; 
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import { AppContext } from "../Context/UserContext"; // Import the AppContext
 
 const Setting = ({ onEmailEdit, onPassEdit }) => {
-  const fname = localStorage.getItem("fname");
-  const lname = localStorage.getItem("lname");
-  const email = localStorage.getItem("email");
+  const { userData, setUserData } = useContext(AppContext); // Destructure userData from context
+  const { fname, lname, email } = userData; // Get user data from context
   const [nameisTrue, setnameisTrue] = useState(true);
-  const [Fname, setFname] = useState(fname || "");
-  const [Lname, setLname] = useState(lname || "");
+  const [Fname, setFname] = useState(fname);
+  const [Lname, setLname] = useState(lname);
   const [image, setImage] = useState(null);
   const Nav = useNavigate();
 
@@ -26,14 +26,15 @@ const Setting = ({ onEmailEdit, onPassEdit }) => {
       try {
         const response = await axios.get("https://palito-backend1.vercel.app/api/auth/user", {
           headers: {
-            'Authorization': `Bearer ${localStorage.getItem("token")}` 
+            Authorization: `Bearer ${localStorage.getItem("token")}` 
           }
         });
         
         const profileImagePath = response.data.profileImage;
-        setImage(profileImagePath || "../Img/pro.jpg"); // Use the Cloudinary URL directly
-        setFname(response.data.firstName);
-        setLname(response.data.lastName);
+        setImage(profileImagePath || "../Img/pro.jpg"); // Set default image if none provided
+        setFname(response.data.firstName); // Set first name
+        setLname(response.data.lastName); // Set last name
+        setUserData(prevState => ({ ...prevState, fname: response.data.firstName, lname: response.data.lastName })); // Update context
       } catch (error) {
         console.error("Error fetching user data:", error);
         toast.error("Failed to load user data.");
@@ -41,16 +42,10 @@ const Setting = ({ onEmailEdit, onPassEdit }) => {
     };
     
     fetchUserData();
-  }, []);
-  
+  }, [setUserData]); // Dependency array updated
+
   const handleNameToggle = () => {
     setnameisTrue(!nameisTrue);
-  };
-
-  const handleBlur = (e) => {
-    if (e.target.value === "") {
-      setnameisTrue(!nameisTrue);
-    }
   };
 
   const handleClick = () => {
@@ -67,15 +62,14 @@ const Setting = ({ onEmailEdit, onPassEdit }) => {
     try {
       const response = await axios.post("https://palito-backend1.vercel.app/api/auth/update", {
         firstName: Fname,
-        lastName: Lname
+        lastName: Lname,
       }, {
         headers: {
-          'Authorization': `Bearer ${localStorage.getItem("token")}` 
+          Authorization: `Bearer ${localStorage.getItem("token")}` 
         }
       });
 
-      localStorage.setItem("fname", Fname);
-      localStorage.setItem("lname", Lname);
+      setUserData(prevState => ({ ...prevState, fname: Fname, lname: Lname })); // Update context
       toast.success(response.data.msg);
       setnameisTrue(true);
     } catch (error) {
@@ -83,66 +77,39 @@ const Setting = ({ onEmailEdit, onPassEdit }) => {
     }
   };
 
-  // const handleImageUpload = async (event) => {
-  //   const file = event.target.files[0];
-  //   if (file) {
-  //     const formData = new FormData();
-  //     formData.append("image", file);
-
-  //     try {
-  //       const response = await axios.post("https://palito-backend1.vercel.app/api/auth/uploadImage", formData, {
-  //         headers: {
-  //           'Authorization': `Bearer ${localStorage.getItem("token")}`,
-  //           'Content-Type': 'multipart/form-data'
-  //         }
-  //       });
-        
-  //       const baseURL = "http://localhost:5000/";
-  //       setImage(`${baseURL}${response.data.imageUrl}`); 
-  //       localStorage.setItem("profileImage", response.data.imageUrl);
-  //       toast.success("Image uploaded successfully");
-  //     } catch (error) {
-  //       toast.error("Error uploading image");
-  //     }
-  //   }
-  // };
-  // useEffect(()=>{
-
-  // },[image])
   const handleImageUpload = async (event) => {
     const file = event.target.files[0];
     if (file) {
       const formData = new FormData();
       formData.append("image", file);
-  
+
       try {
         const response = await axios.post("https://palito-backend1.vercel.app/api/auth/uploadImage", formData, {
           headers: {
-            'Authorization': `Bearer ${localStorage.getItem("token")}`,
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
             'Content-Type': 'multipart/form-data'
           }
         });
-  
-    
+
         setImage(response.data.imageUrl); 
-        localStorage.setItem("profileImage", response.data.imageUrl);
+        setUserData(prevState => ({ ...prevState, profileImage: response.data.imageUrl })); // Update context
         toast.success("Image uploaded successfully");
       } catch (error) {
         toast.error("Error uploading image");
       }
     }
   };
-  
+
   const handleImageRemove = async () => {
     try {
       await axios.delete("https://palito-backend1.vercel.app/api/auth/deleteImage", {
         headers: {
-          'Authorization': `Bearer ${localStorage.getItem("token")}`
+          Authorization: `Bearer ${localStorage.getItem("token")}`
         }
       });
 
       setImage(null);
-      localStorage.removeItem("profileImage");
+      setUserData(prevState => ({ ...prevState, profileImage: null })); // Update context
       toast.success("Avatar removed");
     } catch (error) {
       toast.error("Error removing image");
@@ -202,28 +169,26 @@ const Setting = ({ onEmailEdit, onPassEdit }) => {
               </div>
             </>
           ) : (
-            <>
-              <div className="Cname">
-                <div className="Cname-labels">
-                  <h2>First Name</h2>
-                  <h2>Last Name</h2>
-                </div>
-                <div className="Cname-inputs">
-                  <input
-                    placeholder={fname}
-                    onBlur={handleBlur}
-                    onChange={(e) => setFname(e.target.value)}
-                  />
-                  <input
-                    placeholder={lname}
-                    onChange={(e) => setLname(e.target.value)}
-                  />
-                </div>
-                <div className="Cname-button">
-                  <button onClick={handleNameChange}>Change Name</button>
-                </div>
+            <div className="Cname">
+              <div className="Cname-labels">
+                <h2>First Name</h2>
+                <h2>Last Name</h2>
               </div>
-            </>
+              <div className="Cname-inputs">
+                <input
+                  value={Fname}
+                  onChange={(e) => setFname(e.target.value)}
+                />
+                <input
+                  value={Lname}
+                  onChange={(e) => setLname(e.target.value)}
+                />
+              </div>
+              <div className="Cname-button">
+                <button onClick={handleNameChange}>Change Name</button>
+                <button onClick={handleNameToggle}>Cancel</button>
+              </div>
+            </div>
           )}
         </div>
 
