@@ -7,7 +7,7 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import "../css/Toastify.css";
 import "bootstrap/dist/css/bootstrap.css";
-import CameraAltIcon from "@mui/icons-material/CameraAlt"; 
+import CameraAltIcon from "@mui/icons-material/CameraAlt";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { AppContext } from "../Context/UserContext";
@@ -20,7 +20,7 @@ const Setting = ({ onEmailEdit, onPassEdit }) => {
     setFname: setContextFname,
     setLname: setContextLname,
     setProfileImage,
-  } = useContext(AppContext); // Access context values
+  } = useContext(AppContext);
   const [nameisTrue, setnameisTrue] = useState(true);
   const [Fname, setFname] = useState(fname || "");
   const [Lname, setLname] = useState(lname || "");
@@ -30,14 +30,17 @@ const Setting = ({ onEmailEdit, onPassEdit }) => {
   useEffect(() => {
     const fetchUserData = async () => {
       try {
-        const response = await axios.get("https://palito-backend1.vercel.app/api/auth/user", {
-          headers: {
-            'Authorization': `Bearer ${localStorage.getItem("token")}` 
+        const response = await axios.get(
+          "https://palito-backend1.vercel.app/api/auth/user",
+          {
+            headers: {
+              Authorization: `Bearer ${localStorage.getItem("token")}`,
+            },
           }
-        });
-        
+        );
+
         const profileImagePath = response.data.profileImage;
-        setImage(profileImagePath || "../Img/pro.jpg"); // Use the Cloudinary URL directly
+        setImage(profileImagePath || "../Img/pro.jpg"); 
         setFname(response.data.firstName);
         setLname(response.data.lastName);
       } catch (error) {
@@ -45,10 +48,10 @@ const Setting = ({ onEmailEdit, onPassEdit }) => {
         toast.error("Failed to load user data.");
       }
     };
-    
+
     fetchUserData();
   }, []);
-  
+
   const handleNameToggle = () => {
     setnameisTrue(!nameisTrue);
   };
@@ -71,19 +74,23 @@ const Setting = ({ onEmailEdit, onPassEdit }) => {
     }
 
     try {
-      const response = await axios.post("https://palito-backend1.vercel.app/api/auth/update", {
-        firstName: Fname,
-        lastName: Lname
-      }, {
-        headers: {
-          'Authorization': `Bearer ${localStorage.getItem("token")}` 
+      const response = await axios.post(
+        "https://palito-backend1.vercel.app/api/auth/update",
+        {
+          firstName: Fname,
+          lastName: Lname,
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
+          },
         }
-      });
+      );
 
-      // Update context state
+      
       setContextFname(Fname);
       setContextLname(Lname);
-      
+
       localStorage.setItem("fname", Fname);
       localStorage.setItem("lname", Lname);
       toast.success(response.data.msg);
@@ -98,17 +105,21 @@ const Setting = ({ onEmailEdit, onPassEdit }) => {
     if (file) {
       const formData = new FormData();
       formData.append("image", file);
-  
+
       try {
-        const response = await axios.post("https://palito-backend1.vercel.app/api/auth/uploadImage", formData, {
-          headers: {
-            'Authorization': `Bearer ${localStorage.getItem("token")}`,
-            'Content-Type': 'multipart/form-data'
+        const response = await axios.post(
+          "https://palito-backend1.vercel.app/api/auth/uploadImage",
+          formData,
+          {
+            headers: {
+              Authorization: `Bearer ${localStorage.getItem("token")}`,
+              "Content-Type": "multipart/form-data",
+            },
           }
-        });
-  
-        setImage(response.data.imageUrl); 
-        setProfileImage(response.data.imageUrl); // Update context
+        );
+
+        setImage(response.data.imageUrl);
+        setProfileImage(response.data.imageUrl); 
         localStorage.setItem("profileImage", response.data.imageUrl);
         toast.success("Image uploaded successfully");
       } catch (error) {
@@ -116,17 +127,20 @@ const Setting = ({ onEmailEdit, onPassEdit }) => {
       }
     }
   };
-  
+
   const handleImageRemove = async () => {
     try {
-      await axios.delete("https://palito-backend1.vercel.app/api/auth/deleteImage", {
-        headers: {
-          'Authorization': `Bearer ${localStorage.getItem("token")}`
+      await axios.delete(
+        "https://palito-backend1.vercel.app/api/auth/deleteImage",
+        {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
+          },
         }
-      });
+      );
 
       setImage(null);
-      setProfileImage(null); // Update context
+      setProfileImage(null); 
       localStorage.removeItem("profileImage");
       toast.success("Avatar removed");
     } catch (error) {
@@ -135,7 +149,7 @@ const Setting = ({ onEmailEdit, onPassEdit }) => {
   };
 
   const handleIconClick = () => {
-    document.getElementById("fileInput").click(); 
+    document.getElementById("fileInput").click();
   };
 
   return (
@@ -164,7 +178,7 @@ const Setting = ({ onEmailEdit, onPassEdit }) => {
             accept="image/*"
             onChange={handleImageUpload}
             className="upload-button"
-            style={{ display: 'none' }} // Hide the default file input
+            style={{ display: "none" }} 
           />
           <div className="image-icon" onClick={handleIconClick}>
             <CameraAltIcon style={{ color: "white" }} />

@@ -15,12 +15,13 @@ import logo from "../Img/refresh.png";
 import logo2 from "../Img/Add.png";
 import logo3 from "../Img/simcard-2.png";
 import "../css/Navbar.css";
-import { AppContext } from "../Context/UserContext"; 
+import { AppContext } from "../Context/UserContext";
 import axios from "axios";
 import { ToastContainer } from "react-toastify";
 
 const Navbar = () => {
-  const { folders, setFolders, profileImage, fname, lname, email } = useContext(AppContext);
+  const { folders, setFolders, profileImage, fname, lname, email } =
+    useContext(AppContext);
   const [sideBar, setSideBar] = useState(true);
   const [anchorEl, setAnchorEl] = useState(null);
   const [currentFolder, setCurrentFolder] = useState(null);
@@ -30,9 +31,9 @@ const Navbar = () => {
 
   const handleSETTINGS = () => {
     localStorage.setItem("showSettings", "1");
-    Nav("/Home"); 
+    Nav("/Home");
   };
-  
+
   const handleSETTINGS1 = () => {
     localStorage.setItem("showSettings", "0");
     Nav("/Home");
@@ -54,7 +55,7 @@ const Navbar = () => {
         { name: "New Folder" },
         {
           headers: {
-            Authorization: `Bearer ${token}`, 
+            Authorization: `Bearer ${token}`,
           },
         }
       );
@@ -89,7 +90,9 @@ const Navbar = () => {
         );
         setFolders((prevFolders) =>
           prevFolders.map((folder) =>
-            folder._id === currentFolder._id ? { ...folder, name: res.data.name } : folder
+            folder._id === currentFolder._id
+              ? { ...folder, name: res.data.name }
+              : folder
           )
         );
       } catch (err) {
@@ -101,15 +104,14 @@ const Navbar = () => {
 
   const handleDelete = async () => {
     try {
-      await axios.delete(
-        `${baseURL}api/auth/folders/${currentFolder._id}`,
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        }
+      await axios.delete(`${baseURL}api/auth/folders/${currentFolder._id}`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      setFolders((prevFolders) =>
+        prevFolders.filter((folder) => folder._id !== currentFolder._id)
       );
-      setFolders((prevFolders) => prevFolders.filter((folder) => folder._id !== currentFolder._id));
     } catch (err) {
       console.error(err.message);
     }
@@ -152,7 +154,10 @@ const Navbar = () => {
             }}
           />
         ) : (
-          <SearchOutlinedIcon className="collapsed-search-icon" onClick={toggleSidebar} />
+          <SearchOutlinedIcon
+            className="collapsed-search-icon"
+            onClick={toggleSidebar}
+          />
         )}
 
         <div className="Bar">
@@ -173,7 +178,12 @@ const Navbar = () => {
                   <button onClick={addNewFolder}>Add new folder</button>
                 </>
               ) : (
-                <img src={logo2} alt="logo2" className="collapsed-icon1" onClick={toggleSidebar} />
+                <img
+                  src={logo2}
+                  alt="logo2"
+                  className="collapsed-icon1"
+                  onClick={toggleSidebar}
+                />
               )}
             </div>
 
@@ -183,7 +193,10 @@ const Navbar = () => {
                   <Accordion.Header>
                     <img src={logo3} alt="logo3" />
                     {folder.name}
-                    <MoreVertIcon onClick={(e) => handleMenuOpen(e, folder)} className="dots" />
+                    <MoreVertIcon
+                      onClick={(e) => handleMenuOpen(e, folder)}
+                      className="dots"
+                    />
                   </Accordion.Header>
                   <Accordion.Body></Accordion.Body>
                 </Accordion.Item>
@@ -206,20 +219,33 @@ const Navbar = () => {
                 </div>
               </Accordion.Header>
               <Accordion.Body>
-                <p>{fname} {lname}</p>
+                <p>
+                  {fname} {lname}
+                </p>
                 <p style={{ fontWeight: 800 }}>{email}</p>
-                <p className="pointer" onClick={handleSETTINGS}>Settings</p>
+                <p className="pointer" onClick={handleSETTINGS}>
+                  Settings
+                </p>
                 <div className="btn">
                   <button onClick={handleLogout}>Logout</button>
                 </div>
               </Accordion.Body>
             </Accordion>
           ) : (
-            <Avatar alt="Profile Image" src={profileImage} className="Ava" onClick={toggleSidebar} />
+            <Avatar
+              alt="Profile Image"
+              src={profileImage}
+              className="Ava"
+              onClick={toggleSidebar}
+            />
           )}
         </div>
 
-        <Menu anchorEl={anchorEl} open={Boolean(anchorEl)} onClose={handleMenuClose}>
+        <Menu
+          anchorEl={anchorEl}
+          open={Boolean(anchorEl)}
+          onClose={handleMenuClose}
+        >
           <MenuItem onClick={handleRename}>
             <DriveFileRenameOutlineIcon /> Rename
           </MenuItem>
@@ -228,7 +254,7 @@ const Navbar = () => {
           </MenuItem>
         </Menu>
       </nav>
-      <ToastContainer/>
+      <ToastContainer />
     </div>
   );
 };
