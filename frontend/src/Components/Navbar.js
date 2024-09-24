@@ -15,8 +15,9 @@ import logo from "../Img/refresh.png";
 import logo2 from "../Img/Add.png";
 import logo3 from "../Img/simcard-2.png";
 import "../css/Navbar.css";
-import { AppContext } from "../Context/UserContext"; // Import your context
+import { AppContext } from "../Context/UserContext"; 
 import axios from "axios";
+import { ToastContainer } from "react-toastify";
 
 const Navbar = () => {
   const { folders, setFolders, profileImage, fname, lname, email } = useContext(AppContext);
@@ -227,6 +228,7 @@ const Navbar = () => {
           </MenuItem>
         </Menu>
       </nav>
+      <ToastContainer/>
     </div>
   );
 };
