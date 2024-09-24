@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useState, useEffect } from "react";
 import Avatar from "@mui/material/Avatar";
 import ArrowForwardIosOutlinedIcon from "@mui/icons-material/ArrowForwardIosOutlined";
 import KeyboardBackspaceIcon from "@mui/icons-material/KeyboardBackspace";
@@ -13,19 +13,14 @@ import axios from "axios";
 import { AppContext } from "../Context/UserContext";
 
 const Setting = ({ onEmailEdit, onPassEdit }) => {
-  const {
-    fname: contextFname,
-    lname: contextLname,
-    email: contextEmail,
-    setFname,
-    setLname,
-    setProfileImage,
-  } = useContext(AppContext); // Destructure context values and setters
-  const [nameisTrue, setNameIsTrue] = useState(true);
-  const [Fname, setFnameState] = useState(contextFname || "");
-  const [Lname, setLnameState] = useState(contextLname || "");
+  const fname = localStorage.getItem("fname");
+  const lname = localStorage.getItem("lname");
+  const email = localStorage.getItem("email");
+  const [nameisTrue, setnameisTrue] = useState(true);
+  const [Fname, setFname] = useState(fname || "");
+  const [Lname, setLname] = useState(lname || "");
   const [image, setImage] = useState(null);
-  const navigate = useNavigate();
+  const Nav = useNavigate();
 
   useEffect(() => {
     const fetchUserData = async () => {
@@ -37,9 +32,9 @@ const Setting = ({ onEmailEdit, onPassEdit }) => {
         });
         
         const profileImagePath = response.data.profileImage;
-        setImage(profileImagePath || "../Img/pro.jpg");
-        setFnameState(response.data.firstName);
-        setLnameState(response.data.lastName);
+        setImage(profileImagePath || "../Img/pro.jpg"); // Use the Cloudinary URL directly
+        setFname(response.data.firstName);
+        setLname(response.data.lastName);
       } catch (error) {
         console.error("Error fetching user data:", error);
         toast.error("Failed to load user data.");
@@ -48,20 +43,20 @@ const Setting = ({ onEmailEdit, onPassEdit }) => {
     
     fetchUserData();
   }, []);
-
+  
   const handleNameToggle = () => {
-    setNameIsTrue(!nameisTrue);
+    setnameisTrue(!nameisTrue);
   };
 
   const handleBlur = (e) => {
     if (e.target.value === "") {
-      setNameIsTrue(!nameisTrue);
+      setnameisTrue(!nameisTrue);
     }
   };
 
   const handleClick = () => {
     localStorage.removeItem("showSettings");
-    navigate("/Home");
+    Nav("/Home");
   };
 
   const handleNameChange = async () => {
@@ -80,21 +75,41 @@ const Setting = ({ onEmailEdit, onPassEdit }) => {
         }
       });
 
-      // Update context values
-      setFname(Fname);
-      setLname(Lname);
-      setProfileImage(response.data.profileImage); // Assuming the backend sends the updated profile image
-
-      // Update local storage
       localStorage.setItem("fname", Fname);
       localStorage.setItem("lname", Lname);
       toast.success(response.data.msg);
-      setNameIsTrue(true);
+      setnameisTrue(true);
     } catch (error) {
       toast.error(error.response?.data?.msg || "Error updating name");
     }
   };
 
+  // const handleImageUpload = async (event) => {
+  //   const file = event.target.files[0];
+  //   if (file) {
+  //     const formData = new FormData();
+  //     formData.append("image", file);
+
+  //     try {
+  //       const response = await axios.post("https://palito-backend1.vercel.app/api/auth/uploadImage", formData, {
+  //         headers: {
+  //           'Authorization': `Bearer ${localStorage.getItem("token")}`,
+  //           'Content-Type': 'multipart/form-data'
+  //         }
+  //       });
+        
+  //       const baseURL = "http://localhost:5000/";
+  //       setImage(`${baseURL}${response.data.imageUrl}`); 
+  //       localStorage.setItem("profileImage", response.data.imageUrl);
+  //       toast.success("Image uploaded successfully");
+  //     } catch (error) {
+  //       toast.error("Error uploading image");
+  //     }
+  //   }
+  // };
+  // useEffect(()=>{
+
+  // },[image])
   const handleImageUpload = async (event) => {
     const file = event.target.files[0];
     if (file) {
@@ -108,9 +123,9 @@ const Setting = ({ onEmailEdit, onPassEdit }) => {
             'Content-Type': 'multipart/form-data'
           }
         });
-
+  
+    
         setImage(response.data.imageUrl); 
-        setProfileImage(response.data.imageUrl); // Update context with the new image
         localStorage.setItem("profileImage", response.data.imageUrl);
         toast.success("Image uploaded successfully");
       } catch (error) {
@@ -128,7 +143,6 @@ const Setting = ({ onEmailEdit, onPassEdit }) => {
       });
 
       setImage(null);
-      setProfileImage(null); // Update context to remove the image
       localStorage.removeItem("profileImage");
       toast.success("Avatar removed");
     } catch (error) {
@@ -181,7 +195,7 @@ const Setting = ({ onEmailEdit, onPassEdit }) => {
               <div className="NAME-content">
                 <h3>Name</h3>
                 <p>
-                  {contextFname} {contextLname}
+                  {fname} {lname}
                 </p>
               </div>
               <div className="setting-btn">
@@ -197,13 +211,13 @@ const Setting = ({ onEmailEdit, onPassEdit }) => {
                 </div>
                 <div className="Cname-inputs">
                   <input
-                    placeholder={contextFname}
+                    placeholder={fname}
                     onBlur={handleBlur}
-                    onChange={(e) => setFnameState(e.target.value)}
+                    onChange={(e) => setFname(e.target.value)}
                   />
                   <input
-                    placeholder={contextLname}
-                    onChange={(e) => setLnameState(e.target.value)}
+                    placeholder={lname}
+                    onChange={(e) => setLname(e.target.value)}
                   />
                 </div>
                 <div className="Cname-button">
@@ -217,7 +231,7 @@ const Setting = ({ onEmailEdit, onPassEdit }) => {
         <div className="EMAIL">
           <div className="NAME-content">
             <h3>Email</h3>
-            <p>{contextEmail}</p>
+            <p>{email}</p>
           </div>
           <div className="setting-btn">
             <button onClick={onEmailEdit}>Edit</button>
