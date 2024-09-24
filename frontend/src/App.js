@@ -2,6 +2,7 @@ import Login from "./Components/Login";
 import Signup from "./Components/Signup";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Reset from "./Components/Reset";
+import { ToastContainer } from 'react-toastify';
 import ResetPass from "./Components/ResetPass";
 import Home from "./Components/Home";
 import Navbar from "./Components/Navbar";
@@ -23,6 +24,7 @@ function App() {
           <Route path="/Navbar" element={<Navbar/>}/>
           <Route path="/Setting" element={<Setting/>}/>
         </Routes>
+        <ToastContainer/>
       </Router>
     </div>
   );
